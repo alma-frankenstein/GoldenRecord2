@@ -1,1 +1,0 @@
-web: flask db upgrade; gunicorn heavy_app:app
