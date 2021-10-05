@@ -23,7 +23,6 @@
     margin-right: 9%;
     background-color: #222222;
     background: repeating-linear-gradient(45deg, #555454 0%, #464545 10%, #494848 0%, #414040 50%) 0 / 15px 15px;
-    /* background-image: url(../static/cassette.jpg); */
     background-image: url(../static/golden-record-th.jpg);
 
     background-size: 177px 128px;
@@ -141,9 +140,13 @@
   {% endwith %}
   <div class="mainBlock">
   {% block content %}{% endblock %}
+  <img src="../static/sounds-of-earth.jpg" style='height: 100%; width: 100%; object-fit: contain' align="center"/>
   </div>
+
   <div class="footer">
-    <p>copyright (c) Alma Frankenstein, 2020</p>
+    <p><img src="../static/creativeCommons.png" alt="Creative Commons" width="50" height="50"/>
+   created by Alma Frankenstein, 2021</p>
+   <!-- <img src="../static/sounds-of-earth.jpg" style='height: 100%; width: 100%; object-fit: contain' align="center"/> -->
   </div>
 </body>
 </html>
