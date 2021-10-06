@@ -22,6 +22,11 @@ from forms import LoginForm, RegistrationForm, EmptyForm, PostForm, EditProfileF
 def make_shell_context():
     return {'db': db, 'Song': Song, 'User': User}
 
+@app.route('/')
+@app.route('/index')
+def index():
+    return render_template('index.html')
+
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/add_a_song', methods=['GET', 'POST'])
 @login_required
