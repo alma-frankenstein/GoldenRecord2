@@ -29,7 +29,7 @@ def index():
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/add_a_song', methods=['GET', 'POST'])
-@login_required
+ 
 def add_a_song():
     form = PostForm()
     if request.method == 'POST':
@@ -77,7 +77,7 @@ def logout():
     return redirect(url_for('add_a_song'))
 
 @app.route('/user/<username>')
-@login_required
+ 
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()
     page =  request.args.get('page', 1, type=int)
@@ -90,7 +90,7 @@ def user(username):
     return render_template('user.html', user=user, songs=songs.items, form=form, next_url=next_url, prev_url=prev_url)
 
 @app.route('/edit_profile', methods=['GET', 'POST'])
-@login_required
+ 
 def edit_profile():
     form = EditProfileForm()
     userIdStr = str(current_user.get_id())
@@ -114,7 +114,7 @@ def edit_profile():
     return render_template('edit_profile.html', title='edit profile', form=form)
 
 @app.route('/follow/<username>', methods=['POST'])
-@login_required
+ 
 def follow(username):
     form = EmptyForm()
     if form.validate_on_submit():
@@ -133,7 +133,7 @@ def follow(username):
         return redirect(url_for('add_a_song'))
 
 @app.route('/unfollow/<username>', methods=['POST'])
-@login_required
+ 
 def unfollow(username):
     form = EmptyForm()
     if form.validate_on_submit():
@@ -152,7 +152,7 @@ def unfollow(username):
         return redirect(url_for('add_a_song'))
 
 @app.route('/browse')
-@login_required
+ 
 def browse():
     page = request.args.get('page', 1, type=int)
     songs = Song.query.order_by(Song.timestamp.desc()).paginate(page, app.config['SONGS_PER_PAGE'], False)
@@ -163,7 +163,7 @@ def browse():
     return render_template('browse.html', songs=songs.items, next_url=next_url, prev_url=prev_url)
 
 @app.route('/see_users')
-@login_required
+ 
 def see_users():
     users = User.query.all()
     return render_template('see_users.html', users=users)
