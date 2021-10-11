@@ -87,69 +87,68 @@ def user(username):
         if songs.has_prev else None
     return render_template('user.html', user=user, songs=songs.items, form=form, next_url=next_url, prev_url=prev_url)
 
-@app.route('/edit_profile', methods=['GET', 'POST'])
-def edit_profile():
-    form = EditProfileForm()
-    userIdStr = str(current_user.get_id())
-    avatarLocation = 'static/avatars/'+ userIdStr + '.jpeg'
-    avatarFromUser = '../static/avatars/'+ userIdStr + '.jpeg'
-    if form.validate_on_submit():
-        uploaded_file = request.files['file']
-        if uploaded_file.filename != '':
-            file_ext = os.path.splitext(uploaded_file.filename)[1]
-            if file_ext not in app.config['UPLOAD_EXTENSIONS']:
-                abort(400)
-            else:
-                uploaded_file.save(avatarLocation)
-        current_user.about_me = form.about_me.data
-        db.session.commit()
-        return redirect(url_for('user', username=current_user.username, avatarLocation=avatarLocation, avatarFromUser=avatarFromUser))
+# @app.route('/edit_profile', methods=['GET', 'POST'])
+# def edit_profile():
+#     form = EditProfileForm()
+#     userIdStr = str(current_user.get_id())
+#     avatarLocation = 'static/avatars/'+ userIdStr + '.jpeg'
+#     avatarFromUser = '../static/avatars/'+ userIdStr + '.jpeg'
+#     if form.validate_on_submit():
+#         uploaded_file = request.files['file']
+#         if uploaded_file.filename != '':
+#             file_ext = os.path.splitext(uploaded_file.filename)[1]
+#             if file_ext not in app.config['UPLOAD_EXTENSIONS']:
+#                 abort(400)
+#             else:
+#                 uploaded_file.save(avatarLocation)
+#         current_user.about_me = form.about_me.data
+#         db.session.commit()
+#         return redirect(url_for('user', username=current_user.username, avatarLocation=avatarLocation, avatarFromUser=avatarFromUser))
 
-    elif request.method == 'GET':
-        form.username.data = current_user.username
-        form.about_me.data = current_user.about_me
-    return render_template('edit_profile.html', title='edit profile', form=form)
+#     elif request.method == 'GET':
+#         form.username.data = current_user.username
+#         form.about_me.data = current_user.about_me
+#     return render_template('edit_profile.html', title='edit profile', form=form)
 
-@app.route('/follow/<username>', methods=['POST'])
+# @app.route('/follow/<username>', methods=['POST'])
  
-def follow(username):
-    form = EmptyForm()
-    if form.validate_on_submit():
-        user = User.query.filter_by(username=username).first()
-        if user is None:
-            flash('user {} not found'.format(username))
-            return redirect(url_for('add_a_song'))
-        if user == current_user:
-            flash('you can\'t follow yourself!')
-            return redirect(url_for('user', username=username))
-        current_user.follow(user)
-        db.session.commit()
-        flash('you are following {}'.format(username))
-        return redirect(url_for('user', username=username))
-    else:
-        return redirect(url_for('add_a_song'))
+# def follow(username):
+#     form = EmptyForm()
+#     if form.validate_on_submit():
+#         user = User.query.filter_by(username=username).first()
+#         if user is None:
+#             flash('user {} not found'.format(username))
+#             return redirect(url_for('add_a_song'))
+#         if user == current_user:
+#             flash('you can\'t follow yourself!')
+#             return redirect(url_for('user', username=username))
+#         current_user.follow(user)
+#         db.session.commit()
+#         flash('you are following {}'.format(username))
+#         return redirect(url_for('user', username=username))
+#     else:
+#         return redirect(url_for('add_a_song'))
 
-@app.route('/unfollow/<username>', methods=['POST'])
+# @app.route('/unfollow/<username>', methods=['POST'])
  
-def unfollow(username):
-    form = EmptyForm()
-    if form.validate_on_submit():
-        user = User.query.filter_by(username=username).first()
-        if user is None:
-            flash('user {} not found'.format(username))
-            return redirect(url_for('add_a_song'))
-        if user == current_user:
-            flash('you can\'t unfollow yourself!')
-            return redirect(url_for('user', username=username))
-        current_user.unfollow(user)
-        db.session.commit()
-        flash('you are unfollowing {}'.format(username))
-        return redirect(url_for('user', username=username))
-    else:
-        return redirect(url_for('add_a_song'))
+# def unfollow(username):
+#     form = EmptyForm()
+#     if form.validate_on_submit():
+#         user = User.query.filter_by(username=username).first()
+#         if user is None:
+#             flash('user {} not found'.format(username))
+#             return redirect(url_for('add_a_song'))
+#         if user == current_user:
+#             flash('you can\'t unfollow yourself!')
+#             return redirect(url_for('user', username=username))
+#         current_user.unfollow(user)
+#         db.session.commit()
+#         flash('you are unfollowing {}'.format(username))
+#         return redirect(url_for('user', username=username))
+#     else:
+#         return redirect(url_for('add_a_song'))
 
 @app.route('/browse')
- 
 def browse():
     page = request.args.get('page', 1, type=int)
     songs = Song.query.order_by(Song.timestamp.desc()).paginate(page, app.config['SONGS_PER_PAGE'], False)
@@ -159,11 +158,11 @@ def browse():
         if songs.has_prev else None
     return render_template('browse.html', songs=songs.items, next_url=next_url, prev_url=prev_url)
 
-@app.route('/see_users')
+# @app.route('/see_users')
  
-def see_users():
-    users = User.query.all()
-    return render_template('see_users.html', users=users)
+# def see_users():
+#     users = User.query.all()
+#     return render_template('see_users.html', users=users)
 
 @app.errorhandler(404)
 def page_not_found(e):
