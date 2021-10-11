@@ -2,6 +2,7 @@
 
 {% block content %}
 <div class="header">
+    <a class="link" href="{{ url_for('index') }}">home</a>
     <a class="link" href="{{ url_for('browse') }}">browse</a>
     <a class="link" href="{{ url_for('add_a_song') }}">post a song</a>
     {% if user == current_user %}

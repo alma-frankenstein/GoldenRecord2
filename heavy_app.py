@@ -29,7 +29,6 @@ def index():
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/add_a_song', methods=['GET', 'POST'])
- 
 def add_a_song():
     form = PostForm()
     if request.method == 'POST':
@@ -77,7 +76,6 @@ def logout():
     return redirect(url_for('add_a_song'))
 
 @app.route('/user/<username>')
- 
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()
     page =  request.args.get('page', 1, type=int)
@@ -90,7 +88,6 @@ def user(username):
     return render_template('user.html', user=user, songs=songs.items, form=form, next_url=next_url, prev_url=prev_url)
 
 @app.route('/edit_profile', methods=['GET', 'POST'])
- 
 def edit_profile():
     form = EditProfileForm()
     userIdStr = str(current_user.get_id())
