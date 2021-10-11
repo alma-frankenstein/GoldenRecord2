@@ -39,41 +39,41 @@ def add_a_song():
         return redirect(url_for('browse'))
     return render_template('add_a_song.html',form=form)
 
-@app.route('/register', methods=['GET', 'POST'])
-def register():
-    if current_user.is_authenticated:
-        return redirect(url_for('add_a_song'))
-    form = RegistrationForm()
-    if form.validate_on_submit():
-        user = User(username=form.username.data)
-        user.set_password(form.password.data)
-        db.session.add(user)
-        db.session.commit()
-        flash('congratulations, now you\'re registered!')
-        return redirect(url_for('login'))
-    return render_template('register.html', title='register', form=form)
+# @app.route('/register', methods=['GET', 'POST'])
+# def register():
+#     if current_user.is_authenticated:
+#         return redirect(url_for('add_a_song'))
+#     form = RegistrationForm()
+#     if form.validate_on_submit():
+#         user = User(username=form.username.data)
+#         user.set_password(form.password.data)
+#         db.session.add(user)
+#         db.session.commit()
+#         flash('congratulations, now you\'re registered!')
+#         return redirect(url_for('login'))
+#     return render_template('register.html', title='register', form=form)
 
-@app.route('/login', methods=['GET','POST'])
-def login():
-    if current_user.is_authenticated:
-        return redirect(url_for('add_a_song'))
-    form = LoginForm()
-    if form.validate_on_submit():
-        user = User.query.filter_by(username=form.username.data).first()
-        if user is None or not user.check_password(form.password.data):
-            flash('wrong name or password')
-            return redirect(url_for('login'))
-        login_user(user, remember=form.remember_me.data)
-        next_page = request.args.get('next')
-        if not next_page or url_parse(next_page).netloc != '':
-            next_page = url_for('add_a_song')
-        return redirect(next_page)
-    return render_template('login.html', title='sign in', form=form)
+# @app.route('/login', methods=['GET','POST'])
+# def login():
+#     if current_user.is_authenticated:
+#         return redirect(url_for('add_a_song'))
+#     form = LoginForm()
+#     if form.validate_on_submit():
+#         user = User.query.filter_by(username=form.username.data).first()
+#         if user is None or not user.check_password(form.password.data):
+#             flash('wrong name or password')
+#             return redirect(url_for('login'))
+#         login_user(user, remember=form.remember_me.data)
+#         next_page = request.args.get('next')
+#         if not next_page or url_parse(next_page).netloc != '':
+#             next_page = url_for('add_a_song')
+#         return redirect(next_page)
+#     return render_template('login.html', title='sign in', form=form)
 
-@app.route('/logout')
-def logout():
-    logout_user()
-    return redirect(url_for('add_a_song'))
+# @app.route('/logout')
+# def logout():
+#     logout_user()
+#     return redirect(url_for('add_a_song'))
 
 @app.route('/user/<username>')
 def user(username):
