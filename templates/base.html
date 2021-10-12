@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+     <link rel="stylesheet" href="{{ url_for('static', filename='customStyles.css') }}">
+
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon-192.png') }}"
           type="image/x-icon">
     <link rel="icon" href="{{ url_for('static', filename='favicon-192.png') }}"
@@ -10,9 +13,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
 
+
     <meta charset="UTF-8">
     <title>GR2</title>
-    <style type="text/css">
+    <!-- <style type="text/css">
 
     body {
     color: rgb(206, 160, 9);
@@ -122,13 +126,13 @@
     p {
       font-size: 3.5em;
     }
-}
+} -->
 
-/*-----------------------------------------------------------*/
 
-    </style>
+    <!-- </style> -->
 </head>
 <body>
+
   {% with messages = get_flashed_messages() %}
   {% if messages %}
   <ul>
