@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 
 {% block content %}
@@ -10,5 +11,33 @@
 <h1>Welcome 2 Earth</h1>
 
 <p>Welcome, earthling</p>
+
+<div >
+  <Carousel>
+    <Carousel.Item interval={2000}>
+      <img
+        className="d-block w-50"
+        src="img/IMG-3151.JPG"
+        alt="Image One"
+      />
+    </Carousel.Item>
+
+    <Carousel.Item interval={2000}>
+      <img
+        className="d-block w-50"
+        src="img/IMG-3152.JPG"
+        alt="Image Two"
+      />
+    </Carousel.Item>
+
+    <Carousel.Item interval={2000}>
+      <img
+        className="d-block w-50"
+        src="img/IMG-3153.JPG"
+        alt="Image Two"
+      />
+    </Carousel.Item>
+  </Carousel>
+  </div>
 
 {% endblock %}
