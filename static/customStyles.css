@@ -1,4 +1,7 @@
-/* <style type="text/css"> */
+
+<link href="https://fonts.gstatic.com" rel="preconnect" >
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
 
 body {
 color: rgb(206, 160, 9);
@@ -9,7 +12,9 @@ margin-left: 9%;
 margin-right: 9%;
 background-color: rgb(20, 20, 20, .8);
 background: repeating-linear-gradient(45deg, #555454 0%, #464545 10%, #494848 0%, #414040 50%) 0 / 15px 15px;
-background-image: url(../static/golden-record-th.jpg);
+/* background-image: url(../static/golden-record-th.jpg); */
+background-image: url(./golden-record-th.jpg);
+
 
 background-size: 177px 128px;
 }
