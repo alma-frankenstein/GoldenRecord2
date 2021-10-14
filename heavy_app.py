@@ -25,7 +25,6 @@ def make_shell_context():
 def index():
     return render_template('index.html')
 
-@app.route('/', methods=['GET', 'POST'])
 @app.route('/add_a_song', methods=['GET', 'POST'])
 def add_a_song():
     form = PostForm()
