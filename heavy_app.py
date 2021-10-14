@@ -20,7 +20,7 @@ from forms import EmptyForm, PostForm
 
 @app.shell_context_processor
 def make_shell_context():
-    return {'db': db, 'Song': Song, 'User': User}
+    return {'db': db, 'Song': Song}
 
 @app.route('/')
 @app.route('/index')
