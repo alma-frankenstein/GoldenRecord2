@@ -16,7 +16,7 @@ login = LoginManager(app)
 login.login_view = 'login'
 
 from models import *
-from forms import LoginForm, RegistrationForm, EmptyForm, PostForm, EditProfileForm
+from forms import EmptyForm, PostForm
 
 @app.shell_context_processor
 def make_shell_context():
