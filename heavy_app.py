@@ -11,7 +11,7 @@ app = Flask(__name__)
 app.config.from_object(Config)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
-
+# test comment
 
 from models import *
 from forms import EmptyForm, PostForm
